@@ -54,7 +54,7 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 | Criterion             | Dropped Features                                    | Notes                     |
 |-----------------------|-----------------------------------------------------|---------------------------|
 | Cramér’s V ≈ 1.0      | `l_feat_3`, `l_feat_16`                              | Perfect duplicates        |
-| Pearson `|r| ≥ 0.995`    | `history_b_3` to `history_b_30` (total 26 features) | Severe multicollinearity  |
+| Pearson `|r| ≥ 0.995` | `history_b_3` to `history_b_30` (total 26 features) | Severe multicollinearity  |
 
 **Conclusion**
 - Strong multicollinearity was concentrated in `history_b_*` features → removed accordingly
@@ -68,4 +68,5 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 - **Continuous features**: KS-test p-values ≥ 0.01 for all features → ✅ No significant distribution shifts
 
 **Conclusion**: No evidence of data leakage
+
 
