@@ -54,7 +54,7 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 | Criterion                  | Dropped Features                                    | Notes                      |
 |---------------------------|-----------------------------------------------------|----------------------------|
 | Cramér’s V ≈ 1.0 (p<0.01)  | `l_feat_3`, `l_feat_16`                              | Perfect duplicates         |
-| Pearson |r| ≥ 0.995 (p<0.01) | `history_b_3` to `history_b_30` (total 26 features) | Strong multicollinearity   |
+| Pearson \|r\| ≥ 0.995 (p<0.01) | `history_b_3` to `history_b_30` (total 26 features) | Strong multicollinearity   |
 
 **Conclusion**
 - Strong multicollinearity was concentrated in `history_b_*` features → removed accordingly
@@ -94,3 +94,4 @@ Detailed results are documented in the modeling notebook.
 Environment:
 - Python 3.11+
 - Libraries: pandas, numpy, matplotlib, seaborn, scipy, scikit-learn
+
