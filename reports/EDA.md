@@ -47,18 +47,18 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 
 **Drop Criteria**
 - **Pearson correlation**: |r| ≥ 0.995 AND p-value < 0.01
-- **Cramér’s V**: V ≈ 1.0 AND p-value < 0.01
+- **Cramér’s V**: V ≈ 1.0 AND p-value < 0.01 (bias-corrected)
 
 **Dropped Features Summary**
 
-| Criterion                 | Dropped Features                                    | Notes                     |
-|---------------------------|-----------------------------------------------------|---------------------------|
-| Cramér’s V ≈ 1.0          | `l_feat_3`, `l_feat_16`                              | Perfect duplicates        |
-| Pearson &#124;r&#124; ≥ 0.995 | `history_b_3` to `history_b_30` (total 26 features) | Severe multicollinearity  |
+| Criterion                  | Dropped Features                                    | Notes                      |
+|---------------------------|-----------------------------------------------------|----------------------------|
+| Cramér’s V ≈ 1.0 (p<0.01)  | `l_feat_3`, `l_feat_16`                              | Perfect duplicates         |
+| Pearson |r| ≥ 0.995 (p<0.01) | `history_b_3` to `history_b_30` (total 26 features) | Strong multicollinearity   |
 
 **Conclusion**
 - Strong multicollinearity was concentrated in `history_b_*` features → removed accordingly
-- Current feature set is well-suited for tree-based models
+- Current feature set is streamlined and suitable for tree-based models
 
 ---
 
@@ -69,5 +69,28 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 
 **Conclusion**: No evidence of data leakage
 
+---
+
+## Class Imbalance Strategy
+
+Due to the extreme class imbalance (clicked = 1: ~1.9%), separate sampling strategies were considered:
+
+- **Baseline Model**: Trained on original distribution
+- **Undersampling + Oversampling**: Applied in a separate notebook (`sampling.ipynb`) to rebalance the target distribution
+- Sampling effects were validated using ROC-AUC / PR-AUC comparison on out-of-fold predictions
+
+Detailed results are documented in the modeling notebook.
 
 
+---
+
+## Reproducibility
+
+- Data source: `/Users/hwangsia/Desktop/open/train.parquet`
+- Train/validation split: 80/20 stratified on `clicked`, with `random_state=42`
+- All figures and tables were generated using `EDA.ipynb`
+- Key outputs (e.g., `train_df.csv`, `valid_df.csv`) saved under `Desktop` for downstream modeling
+
+Environment:
+- Python 3.11+
+- Libraries: pandas, numpy, matplotlib, seaborn, scipy, scikit-learn
