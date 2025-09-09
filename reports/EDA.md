@@ -29,21 +29,20 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
   - Unique values > 25 → treated as **continuous**
 
 **Dropped variables**
-- `l_feat_20`, `l_feat_23`: Only one category present → no predictive value
-- `l_feat_2`, `l_feat_13`: Near-identical CTRs across categories → low information
-- `l_feat_17`: Perfectly correlated with `l_feat_9` → removed due to duplication
-- `l_feat_26`: Low cardinality + weak CTR signal → removed due to low information
+- Removed:  
+  - Constant: `l_feat_20`, `l_feat_23`  
+  - Low CTR separation: `l_feat_2`, `l_feat_13`, `l_feat_26`  
+  - Duplicate: `l_feat_17` ≈ `l_feat_9`
 
 #### 3.2 Summary of feat_* and history_* Groups
 
-- `feat_e_3`: High missing rate
-- `feat_c_1`, `feat_c_4`, `feat_c_5`, `feat_c_7`: Low variance → likely uninformative
-- `feat_a_*`: Many features are 0 for over 75% of samples → binarization considered
-- `history_b_*`: Many features are highly correlated with each other → redundancy detected
-
+- `feat_e_3`: High missingness  
+- `feat_c_*`: Several (e.g., `_1`, `_4`, `_5`, `_7`) have low variance → weak signal  
+- `feat_a_*`: Mostly zeros → binarization considered  
+- `history_b_*`: High inter-feature correlation → flagged for redundancy
 ---
 
-## Multicollinearity Removal (Correlation Test)
+## Feature Pruning: Multicollinearity (Correlation-based)
 
 **Drop Criteria**
 - **Pearson correlation**: |r| ≥ 0.995 AND p-value < 0.01
@@ -61,6 +60,10 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 - Current feature set is streamlined and suitable for tree-based models
 
 ---
+### Sequence (`seq`) Features
+
+Explored CTR patterns in sequence length, repetition, and position; engineered compact features (e.g., length, first/last token one-hot), but excluded from final model due to minimal performance lift.
+---
 
 ## Data Leakage Check
 
@@ -68,18 +71,6 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 - **Continuous features**: KS-test p-values ≥ 0.01 for all features → ✅ No significant distribution shifts
 
 **Conclusion**: No evidence of data leakage
-
----
-
-## Class Imbalance Strategy
-
-Due to the extreme class imbalance (clicked = 1: ~1.9%), separate sampling strategies were considered:
-
-- **Baseline Model**: Trained on original distribution
-- **Undersampling + Oversampling**: Applied in a separate notebook (`sampling.ipynb`) to rebalance the target distribution
-- Sampling effects were validated using ROC-AUC / PR-AUC comparison on out-of-fold predictions
-
-Detailed results are documented in the modeling notebook.
 
 
 ---
@@ -94,4 +85,5 @@ Detailed results are documented in the modeling notebook.
 Environment:
 - Python 3.11+
 - Libraries: pandas, numpy, matplotlib, seaborn, scipy, scikit-learn
+
 
