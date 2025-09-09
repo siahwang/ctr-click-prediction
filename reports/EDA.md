@@ -62,7 +62,7 @@ Understand the dataset structure and clean features for CTR (Click-Through Rate)
 ---
 ### Sequence (`seq`) Features
 
-Explored CTR patterns in sequence length, repetition, and position; engineered compact features (e.g., length, first/last token one-hot), but excluded from final model due to minimal performance lift.
+- Explored CTR patterns in sequence length, repetition, and position; engineered compact features (e.g., length, first/last token one-hot), but excluded from final model due to minimal performance lift.
 ---
 
 ## Data Leakage Check
@@ -85,5 +85,6 @@ Explored CTR patterns in sequence length, repetition, and position; engineered c
 Environment:
 - Python 3.11+
 - Libraries: pandas, numpy, matplotlib, seaborn, scipy, scikit-learn
+
 
 
