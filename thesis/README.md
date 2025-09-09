@@ -8,11 +8,11 @@
 ---
 
 ### Figure 1 — Learned causal structure (BN)
-*BN captures the relationships among risk factors and COPD. BN-H uses **the same graph**, swapping only the COPD node’s conditional table with LR probabilities.*
+*BN captures the probabilistic relationships among risk factors and COPD. In BN-H, only the conditional distribution (CPT) of the target node (COPD) is replaced with **LR-predicted probabilities**, keeping the rest of the BN structure untouched.*
 
 > ### Figure 1 — Learned causal structure (BN)
 ![BN structure](./figures/BN.png)
-*BN captures the probabilistic relationships among risk factors and COPD. In BN-H, only the conditional distribution (CPT) of the target node (COPD) is replaced with **LR-predicted probabilities**, keeping the rest of the BN structure untouched.*
+
 ---
 
 ### Table 1 — Model comparison (test set)
@@ -37,5 +37,6 @@ Start from the learned BN (with whitelist/blacklist domain constraints). Keep **
 
 ### One-sentence pitch
 **Hybrid BN = BN’s interpretability + LR’s predictive power** — a simple swap at the target node that measurably boosts PR-AUC/Recall without losing the causal story.
+
 
 
