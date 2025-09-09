@@ -1,9 +1,9 @@
 # Hybrid Bayesian Network for Early COPD Screening — Portfolio Highlight
 
 **TL;DR (3 lines).**
-- Vanilla Bayesian Networks (BN) explain *why* but often underperform Logistic Regression (LR) on *prediction*.
-- I built a **Hybrid BN (BN-H)** that **keeps the BN structure** but **replaces the COPD node’s CPT with an LR classifier** trained on the same parents.
-- Result: **BN-H closes the performance gap to LR** while preserving BN interpretability (see Fig. 1 & Table 1).
+- **Generative models like BN** capture causal structure but underperform in prediction. **Discriminative models like LR** excel at prediction but lack interpretability.
+- I built a **Hybrid BN (BN-H)** that keeps BN’s graph but replaces the COPD node’s CPT with an LR trained on its parents.
+- Result: **BN-H matches LR’s performance** (F1 ↑, PR-AUC ↑) while preserving BN’s causal transparency (see Fig. 1 & Table 1).
 
 ---
 
@@ -12,7 +12,7 @@
 
 > ### Figure 1 — Learned causal structure (BN)
 ![BN structure](./figures/BN.png)
-
+*BN captures the probabilistic relationships among risk factors and COPD. In BN-H, only the conditional distribution (CPT) of the target node (COPD) is replaced with **LR-predicted probabilities**, keeping the rest of the BN structure untouched.*
 ---
 
 ### Table 1 — Model comparison (test set)
@@ -37,4 +37,5 @@ Start from the learned BN (with whitelist/blacklist domain constraints). Keep **
 
 ### One-sentence pitch
 **Hybrid BN = BN’s interpretability + LR’s predictive power** — a simple swap at the target node that measurably boosts PR-AUC/Recall without losing the causal story.
+
 
