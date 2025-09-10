@@ -20,11 +20,6 @@ Due to competition compliance, the data is not included in this repository.
 - 1,527,298 samples
 - 118 columns (no target; includes `ID`)
 
-### sample_submission.csv
-
-- Required output format
-- Columns: `ID`, `clicked` (prediction)
-
 ### Column Groups
 
 | Group          | Description |
@@ -39,4 +34,5 @@ Due to competition compliance, the data is not included in this repository.
 | `ID`                  | Identifier (test only) |
 
 > Note: Exact feature semantics are intentionally undisclosed per competition guidelines.
+
 
