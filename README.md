@@ -10,7 +10,7 @@ This repository contains an end-to-end CTR prediction pipeline. The project incl
 → Based on bias-corrected Cramér’s V ≈ 1 and Pearson |r| ≥ 0.995 (p < 0.01)
 - **Sequence logs**: Engineered compact token-level features; excluded after no lift on hold-out
 
-📎 Details: [`notebooks/EDA.ipynb`](notebooks/EDA.ipynb) | [`reports/EDA.md`](reports/EDA.md)
+📎 Details: [`notebooks/EDA.ipynb`](ctr-click-prediction/notebooks/EDA.ipynb) | [`reports/EDA.md`](ctr-click-prediction/reports/EDA.md)
 
 ---
 
@@ -20,7 +20,7 @@ This repository contains an end-to-end CTR prediction pipeline. The project incl
 - Evaluation metrics: AP, ROC-AUC, WLL (50:50), Portfolio Score
 - Early results suggest importance of `history_*` but minimal gain from `seq` features
 
-📎 Details: *Coming soon in* [`notebooks/Modeling.ipynb`](notebooks/Modeling.ipynb)
+📎 Details: *Coming soon in* [`notebooks/Modeling.ipynb`](ctr-click-prediction/notebooks/Modeling.ipynb)
 
 ---
 
@@ -36,9 +36,9 @@ pip install -r requirements.txt
 jupyter notebook notebooks/EDA.ipynb
 ```
 ## File Structure
-- [`notebooks/EDA.ipynb`](notebooks/EDA.ipynb)  : Full exploratory analysis
+- [`notebooks/EDA.ipynb`](ctr-click-prediction/notebooks/EDA.ipynb)  : Full exploratory analysis
 - notebooks/Modeling.ipynb: Training & evaluation pipeline (WIP)
-- [`reports/EDA.md`](reports/EDA.md)  : Summary of key preprocessing decisions
+- [`reports/EDA.md`](ctr-click-prediction/reports/EDA.md)  : Summary of key preprocessing decisions
 - reports/modeling.md: To be added
 
 ---
@@ -46,7 +46,8 @@ jupyter notebook notebooks/EDA.ipynb
 
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
-➡️ See [`thesis/README.md`](thesis/README.md) for details.
+➡️ See [`thesis/README.md`](ctr-click-prediction/thesis/README.md) for details.
+
 
 
 
