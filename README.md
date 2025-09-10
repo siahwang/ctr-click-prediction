@@ -2,6 +2,12 @@
 
 This repository contains an end-to-end CTR prediction pipeline. The project includes exploratory data analysis (EDA), feature pruning, and model evaluation for high-class imbalance data.
 
+## Data Access
+
+Raw datasets (`train.parquet`, `test.parquet`) are excluded from this repository due to competition restrictions.  
+See [`data/README.md`](data/README.md) for dataset schema, access policy, and structure.  
+All scripts assume local data access via the `data/` folder or `DATA_DIR` environment variable.
+
 ## 1. EDA Summary
 
 - **Class imbalance**: Positive rate (`clicked=1`) ≈ 1.9% → stratified splitting & weighted metrics
@@ -43,6 +49,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
