@@ -8,7 +8,6 @@ This repository contains an end-to-end CTR prediction pipeline. The project incl
 - **Missingness**: Most <0.2%, but `feat_e_3` >10% → flagged
 - **Feature pruning**: Removed low-signal, constant, or highly correlated features
 - **Sequence logs**: Engineered compact token-level features; excluded after no lift on hold-out
-- **Leakage check**: Categorical category check + KS-test → no leakage detected
 
 📎 Details: [`notebooks/EDA.ipynb`](notebooks/EDA.ipynb) | [`reports/EDA.md`](reports/EDA.md)
 
@@ -47,4 +46,5 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
