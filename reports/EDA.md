@@ -30,7 +30,7 @@ Focus is on handling class imbalance, missing values, multicollinearity, and pot
 
 - `l_feat_*` variables assigned type based on unique value count:  
   - ≤25 unique values → categorical  
-  - >\25 unique values → continuous
+  - \>\25 unique values → continuous
 
 ### 3.2 Dropped Features
 
@@ -68,4 +68,5 @@ Focus is on handling class imbalance, missing values, multicollinearity, and pot
 - Split: 80/20 stratified on `clicked`, random_state=42
 - Artifacts: `train_df.csv`, `valid_df.csv` saved for modeling
 - Python 3.11+, Libraries: pandas, numpy, scipy, sklearn, seaborn
+
 
