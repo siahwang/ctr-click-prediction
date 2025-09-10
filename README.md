@@ -10,7 +10,7 @@ This repository contains an end-to-end CTR prediction pipeline. The project incl
 → Based on bias-corrected Cramér’s V ≈ 1 and Pearson |r| ≥ 0.995 (p < 0.01)
 - **Sequence logs**: Engineered compact token-level features; excluded after no lift on hold-out
 
-📎 Details: [`notebooks/EDA.ipynb`](ctr-click-prediction/notebooks/EDA.ipynb) | [`reports/EDA.md`](ctr-click-prediction/reports/EDA.md)
+📎 Details: [`notebooks/EDA.ipynb`](notebooks/01_EDA.ipynb) | [`reports/EDA.md`](creports/EDA.md)
 
 ---
 
@@ -35,18 +35,15 @@ pip install -r requirements.txt
 # Run EDA notebook
 jupyter notebook notebooks/EDA.ipynb
 ```
-## File Structure
-- [`notebooks/EDA.ipynb`](ctr-click-prediction/notebooks/EDA.ipynb)  : Full exploratory analysis
-- notebooks/Modeling.ipynb: Training & evaluation pipeline (WIP)
-- [`reports/EDA.md`](ctr-click-prediction/reports/EDA.md)  : Summary of key preprocessing decisions
-- reports/modeling.md: To be added
+
 
 ---
 ## Related Work
 
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
-➡️ See [`thesis/README.md`](ctr-click-prediction/thesis/README.md) for details.
+➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
