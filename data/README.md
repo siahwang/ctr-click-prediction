@@ -20,23 +20,22 @@ Due to competition compliance, the data is not included in this repository.
 - 1,527,298 samples
 - 118 columns (no target; includes `ID`)
 
-### sample_submission.csv
+### Column Groups *(119 columns incl. target)*
 
-- Required output format
-- Columns: `ID`, `clicked` (prediction)
-
-### Column Groups
-
-| Group          | Description |
-|----------------|-------------|
-| `gender`, `age_group` | User demographic |
-| `inventory_id`        | Ad inventory ID |
-| `day_of_week`, `hour`, `seq` | Session info |
-| `l_feat_*`            | Ad-level features (e.g. `l_feat_14` = ad set) |
-| `feat_a_* ~ feat_e_*` | Feature groups A to E |
-| `history_a_*`         | Historical popularity signals |
-| `clicked`             | Target (train only) |
-| `ID`                  | Identifier (test only) |
+| Group                         | Description                            | Notes                           |
+|------------------------------|----------------------------------------|---------------------------------|
+| `gender`, `age_group`        | User demographics                      | Categorical                     |
+| `inventory_id`               | Ad inventory ID                        | Categorical                     |
+| `day_of_week`, `hour`        | Time context (weekday index, hour)     | Ordinal / categorical           |
+| `seq`                        | User server log **sequence**           | Exact meaning not disclosed     |
+| `l_feat_*`                   | Ad-level attributes                    | Cardinality-based type handling |
+| `feat_a_* ~ feat_e_*`        | Feature groups A to E                  | Mostly continuous / int-like    |
+| `history_a_*`                | Historical popularity features         | Long-term engagement signal     |
+| `history_b_*`                | Other historical features              | High inter-correlation observed |
+| `clicked`                    | Target (train only)                    | Binary label                    |
+| `ID`                         | Row identifier (test only)             | Not used for training           |
 
 > Note: Exact feature semantics are intentionally undisclosed per competition guidelines.
+
+
 
