@@ -210,3 +210,6 @@ __marimo__/
 data/
 models/
 reports/figures/
+
+# Ignore all artifacts (tuning outputs, logs, etc.)
+notebooks/artifacts/
