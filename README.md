@@ -16,7 +16,7 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 → Based on bias-corrected Cramér’s V ≈ 1 and Pearson |r| ≥ 0.995 (p < 0.01)
 - **Sequence logs**: Engineered compact token-level features; excluded after no lift on hold-out
 
-📎 Details: [`notebooks/EDA.ipynb`](notebooks/01_EDA.ipynb) | [`reports/EDA.md`](creports/EDA.md)
+📎 Details: [`notebooks/EDA.ipynb`](notebooks/01_EDA.ipynb) | [`reports/EDA.md`](reports/EDA.md)
 
 ---
 
@@ -49,6 +49,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
