@@ -212,3 +212,4 @@ models/
 reports/figures/
 .DS_Store
 notebooks/_backup/
+.DS_Store
