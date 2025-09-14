@@ -10,8 +10,6 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 
 ## 1. EDA Summary
 
-## 1. EDA Summary
-
 - **Class imbalance**: Positive rate (`clicked=1`) ≈ 1.9% → stratified splitting & weighted metrics used
 - Data inspection revealed several near‑constant or highly correlated features → flagged for potential drop/clip
 - Transformation experiments (clip, drop, flag) showed that **clipping outliers** improved PR‑AUC (+1.7%); others had minimal or negative effect
@@ -53,6 +51,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
