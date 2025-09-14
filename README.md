@@ -10,11 +10,15 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 
 ## 1. EDA Summary
 
-- **Class imbalance**: Positive rate (`clicked=1`) ≈ 1.9% → stratified splitting & weighted metrics
-- **Missingness**: Most <0.2%, but `feat_e_3` >10% → flagged
-**Feature pruning**: Removed low-signal, constant, or **extremely correlated** features  
-→ Based on bias-corrected Cramér’s V ≈ 1 and Pearson |r| ≥ 0.995 (p < 0.01)
-- **Sequence logs**: Engineered compact token-level features; excluded after no lift on hold-out
+## 1. EDA Summary
+
+- **Class imbalance**: Positive rate (`clicked=1`) ≈ 1.9% → stratified splitting & weighted metrics used
+- Data inspection revealed several near‑constant or highly correlated features → flagged for potential drop/clip
+- Transformation experiments (clip, drop, flag) showed that **clipping outliers** improved PR‑AUC (+1.7%); others had minimal or negative effect
+- Among features with zero gain in all folds, both permutation and SHAP confirmed **no features** qualified for removal
+- Sequence-derived features were engineered (e.g., length, repetition, token position), but **yielded negligible lift** → excluded from final model
+- Cleaned datasets saved as Parquet files for reproducibility
+
 
 📎 Details: [`notebooks/EDA.ipynb`](notebooks/01_EDA.ipynb) | [`reports/EDA.md`](reports/EDA.md)
 
@@ -49,6 +53,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
