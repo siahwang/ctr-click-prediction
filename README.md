@@ -24,9 +24,8 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 
 ## 2. Modeling Summary *(To be added)*
 
-- Model: XGBoost baseline vs. feature-augmented models
-- Evaluation metrics: AP, ROC-AUC, WLL (50:50), Portfolio Score
-- Early results suggest importance of `history_*` but minimal gain from `seq` features
+- Model: LightGBM
+- Evaluation metrics: AP, WLL (50:50), LogLoss
 
 📎 Details: *Coming soon in* [`notebooks/Modeling.ipynb`](ctr-click-prediction/notebooks/Modeling.ipynb)
 
@@ -51,6 +50,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
