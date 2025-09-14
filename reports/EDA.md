@@ -1,44 +1,33 @@
 # EDA Summary for CTR Prediction
 
-## Objective
+## 1. Dataset Overview
 
-Summarize key findings and data preprocessing decisions from exploratory analysis to support CTR prediction modeling.  
-Focus is on handling class imbalance, missing values, multicollinearity, and potential data leakage.
+- **Train**: 7.28M rows, **Pos rate** ≈ 1.91%
+- **Valid**: 1.82M rows, **Pos rate** ≈ 1.91%
+- **Holdout**: 1.61M rows, **Pos rate** ≈ 1.91%
+- **Total features**: 119 columns (including numerical, categorical, and sequence field)
+- **Note**: Most features (`feat_e_*`, `l_feat_*`, etc.) have no semantic description — handled purely based on statistical characteristics.
 
----
+The target variable `clicked` is highly imbalanced (~1.9% positive class), requiring stratified splitting and weighted evaluation metrics during modeling.
 
----
-
-## 1. Class Imbalance
-
-- Target variable (`clicked`) shows **~1.9% positive rate** in training data
-- Stratified split applied (80/20) to maintain label distribution
 
 ---
+## 2. Feature Audit & Preprocessing Decision
 
-## 2. Missing Value Summary
-
-- 96 features contain missing values; most have a missing rate below 0.2%
-- `feat_e_3` missing rate over **10%** → not dropped, but flagged for monitoring 
-  *(visual summary and null pattern shown in EDA.ipynb)*
+- **Near-constant features**: e.g., `feat_l_20`, `feat_l_2` → flagged (std ≈ 0 or one unique value)
+- **Redundancy reduction**:
+  - Candidates identified → evaluated via flag/drop/clip variants
+  - Clipping improved PR‑AUC (+1.7%); drop/flag did not
+- **Zero gain check**: 61 features with gain=0 in 3-fold CV → all retained (SHAP + permutation ≈ 0)
 
 ---
+## 3. Categorical vs Continuous Heuristic
 
-## 3. Feature Categorization & Pruning
-
-### 3.1 Categorical vs Continuous Heuristic
-
+- No feature schema was provided; types inferred from distributional properties.
 - `l_feat_*` variables assigned type based on unique value count:  
   - ≤25 unique values → categorical  
-  - \>25 unique values → continuous
+  - >25 unique values → continuous
 
-### 3.2 Dropped Features
-
-| Reason                | Variables                       |
-|----------------------|----------------------------------|
-| Constant values       | `l_feat_20`, `l_feat_23`        |
-| Poor CTR separation   | `l_feat_2`, `l_feat_13`, `l_feat_26` |
-| Duplicates            | `l_feat_17` ≈ `l_feat_9`         |
 
 ---
 
@@ -58,7 +47,7 @@ Focus is on handling class imbalance, missing values, multicollinearity, and pot
 
 - Extracted features: sequence length, repetition count, position encoding  
 - No performance gain → excluded from final model  
-  *(details in EDA.ipynb Section 6)*
+  *(details in EDA.ipynb)*
 
 ---
 
@@ -66,8 +55,9 @@ Focus is on handling class imbalance, missing values, multicollinearity, and pot
 
 - Source: `/Users/hwangsia/Desktop/open/train.parquet`
 - Split: 80/20 stratified on `clicked`, random_state=42
-- Artifacts: `train_df.csv`, `valid_df.csv` saved for modeling
+- Artifacts: `train.parquet`, `valid.parquet`, `holdout.parquet` saved for modeling
 - Python 3.11+, Libraries: pandas, numpy, scipy, sklearn, seaborn
+
 
 
 
