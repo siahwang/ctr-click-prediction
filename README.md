@@ -35,6 +35,7 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 - **Protocol**: Fully leak-free. All tuning and selection used train CV only; holdout used once.
 
 📎 Details: [`notebooks/Modeling.ipynb`](notebooks/02_Modeling.ipynb) | [`reports/Modeling.md`](reports/Modeling.md)
+
 ---
 
 ## 3. Reproducibility
@@ -56,6 +57,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
