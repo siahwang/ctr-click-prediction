@@ -1,6 +1,6 @@
 # CTR Prediction – End-to-End Pipeline
 
-This repository contains an end-to-end CTR prediction pipeline. The project includes exploratory data analysis (EDA), feature pruning, and model evaluation for high-class imbalance data.
+This repository presents an end-to-end pipeline for Click-Through Rate (CTR) prediction on large-scale, highly imbalanced data, covering EDA, feature engineering, model calibration, and evaluation.
 
 ## Data Access
 
@@ -17,9 +17,6 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 - Sequence-derived features were engineered (e.g., length, repetition, token position), but **yielded negligible lift** → excluded from final model
 - Cleaned datasets saved as Parquet files for reproducibility
 
-
-📎 Details: [`notebooks/EDA.ipynb`](notebooks/01_EDA.ipynb) | [`reports/EDA.md`](reports/EDA.md)
-
 ---
 
 ## 2. Modeling Summary
@@ -27,14 +24,20 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 - **Train / Valid / Holdout split**: 3-fold CV used for all tuning and calibration.  
   → `valid` used only for early stopping and stage gating (never for model selection).  
   → `holdout` evaluated once at final stage.
-- **Best model**: Tuned LightGBM + Isotonic Calibration  
-  → Uncalibrated model had higher AP (6.34%) but heavily overconfident (MeanPred 14.8%).  
-  → Calibrated model improved LogLoss (↓0.09) and predicted closer to true click rate (MeanPred 1.35% vs actual 1.91%).
+- **Best model**: Tuned LightGBM + Isotonic Calibration
+  | Model                  | AP     | LogLoss | WLL    | MeanPred |
+  |------------------------|--------|---------|--------|----------|
+  | Final (Calibrated)     | 0.0586 | 0.0916  | 2.0604 | 0.0135   |
+  | Final (Uncalibrated)   | 0.0634 | 0.2168  | 1.0142 | 0.1480   |
+  
+- Isotonic calibration significantly reduced overconfidence, improving LogLoss and aligning predicted probabilities to the base rate (~1.9%).
 - **Calibration trade-off**: Expected WLL(50:50) increase due to lower confidence on rare positive class.  
   → Chosen for more reliable probability estimates in high-imbalance context.
 - **Protocol**: Fully leak-free. All tuning and selection used train CV only; holdout used once.
 
-📎 Details: [`notebooks/Modeling.ipynb`](notebooks/02_Modeling.ipynb) | [`reports/Modeling.md`](reports/Modeling.md)
+
+📎 Details: [`notebooks/EDA.ipynb`](notebooks/01_EDA.ipynb), [`notebooks/Modeling.ipynb`](notebooks/02_Modeling.ipynb)  
+📄 Report: [`reports/Reports.md`](reports/Reports.md)
 
 ---
 
@@ -57,6 +60,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
