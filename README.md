@@ -22,13 +22,19 @@ All scripts assume local data access via the `data/` folder or `DATA_DIR` enviro
 
 ---
 
-## 2. Modeling Summary *(To be added)*
+## 2. Modeling Summary
 
-- Model: LightGBM
-- Evaluation metrics: AP, WLL (50:50), LogLoss
+- **Train / Valid / Holdout split**: 3-fold CV used for all tuning and calibration.  
+  → `valid` used only for early stopping and stage gating (never for model selection).  
+  → `holdout` evaluated once at final stage.
+- **Best model**: Tuned LightGBM + Isotonic Calibration  
+  → Uncalibrated model had higher AP (6.34%) but heavily overconfident (MeanPred 14.8%).  
+  → Calibrated model improved LogLoss (↓0.09) and predicted closer to true click rate (MeanPred 1.35% vs actual 1.91%).
+- **Calibration trade-off**: Expected WLL(50:50) increase due to lower confidence on rare positive class.  
+  → Chosen for more reliable probability estimates in high-imbalance context.
+- **Protocol**: Fully leak-free. All tuning and selection used train CV only; holdout used once.
 
-📎 Details: *Coming soon in* [`notebooks/Modeling.ipynb`](ctr-click-prediction/notebooks/Modeling.ipynb)
-
+📎 Details: [`notebooks/Modeling.ipynb`](notebooks/02_Modeling.ipynb) | [`reports/Modeling.md`](reports/Modeling.md)
 ---
 
 ## 3. Reproducibility
@@ -50,6 +56,7 @@ jupyter notebook notebooks/EDA.ipynb
 This repository is accompanied by a thesis project on **Hybrid Bayesian Networks for Early COPD Screening**, which explores the combination of generative and discriminative models in a high-imbalance healthcare context.
 
 ➡️ See [`thesis/README.md`](thesis/README.md) for details.
+
 
 
 
